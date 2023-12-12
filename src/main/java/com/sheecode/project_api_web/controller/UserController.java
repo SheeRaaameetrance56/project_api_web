@@ -13,7 +13,7 @@ public class UserController {
     @Autowired
     private UserRepo userRepository;
 
-    @PostMapping("/user")
+    @PostMapping("/save_user")
     User newUser(@RequestBody User newUser){
         return userRepository.save(newUser);
     }
