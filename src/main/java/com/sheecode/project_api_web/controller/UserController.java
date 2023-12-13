@@ -1,5 +1,6 @@
 package com.sheecode.project_api_web.controller;
 
+import com.sheecode.project_api_web.exceptions.userNotFoundException;
 import com.sheecode.project_api_web.model.User;
 import com.sheecode.project_api_web.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class UserController {
     @GetMapping("/users")
     List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    @GetMapping("user/{id}")
+    User getUserById(@PathVariable int id){
+        return userRepository.findById(id)
+                .orElseThrow(()->new userNotFoundException(id));
     }
 
 }
